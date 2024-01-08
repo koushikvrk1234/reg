@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    
+    form {
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        width: 350px;
+    }
+    
+    label {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 14px;
+        color: #333333;
+    }
+    
+    input,
+    select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+        border: 1px solid #cccccc;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+    
+    button {
+        background-color: #3498db;
+        color: #ffffff;
+        padding: 12px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    
+    button:hover {
+        background-color: #1e87d7;
+    }
+    
+    /* Additional styles for better aesthetics */
+    body {
+        background: linear-gradient(to right, #3498db, #6c5b7b, #b33939);
+    }
+    
+    form {
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    label, input, select, button {
+        transition: all 0.3s ease-in-out;
+    }
+    
+    input:focus,
+    select:focus,
+    button:focus {
+        outline: none;
+        border-color: #3498db;
+    }
+    
+    button:active {
+        background-color: #1e87d7;
+    }
+ </style>   
+    
+</head>
+<body>
+
+    <form id="registrationForm" method="post" onsubmit="return validateForm()">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="number">Phone number:</label>
+        <input type="text" id="number" name="number" pattern="\d{10}" title="Phone number must be 10 digits" required>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" min="18" required>
+
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required>
+            <option value="" disabled selected>Select your gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <label for="confirm-password">Confirm Password:</label>
+        <input type="password" id="confirm-password" name="confirm-password" required>
+
+        <button type="submit">Register</button>
+
+    </form>
+
+    <script>
+        function validateForm() {
+            var username = document.getElementById('username').value;
+            var email = document.getElementById('email').value;
+            var number = document.getElementById('number').value;
+            var age = document.getElementById('age').value;
+            var gender = document.getElementById('gender').value;
+            var password = document.getElementById('password').value;
+            var confirmPassword = document.getElementById('confirm-password').value;
+
+            if (password !== confirmPassword) {
+                alert("Password and Confirm Password do not match");
+                return false;
+            }
+
+            if (username === '' || email === '' || number === '' || age === '' || gender === '' || password === '' || confirmPassword === '') {
+                alert("All fields must be filled");
+                return false;
+            }
+
+            if (age < 18) {
+                alert("You must be at least 18 years old to register");
+                return false;
+            }
+
+            window.location.href = 'succes.html';
+
+            return false;
+        }
+    </script>
+
+</body>
+</html>
